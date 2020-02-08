@@ -17,7 +17,7 @@
 }
 
 .Blog a:hover,
-.Blog a:active {
-    color: coral;
+.Blog a:active,
+.Blog a.active {
+  color: coral;
 }
-
