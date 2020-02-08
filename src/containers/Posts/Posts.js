@@ -6,14 +6,14 @@ import './Posts.css';
 const Posts = props => {
   const [posts, setPosts] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
-  const [setError, error] = useState(false);
+  const [setFetchError, fetchError] = useState(false);
 
   useEffect(() => {
     axios
       .get('/posts')
       .then(response => {
-        const respPosts = response.data.slice(0, 4);
-        const updatedPosts = respPosts.map(post => {
+        const posts = response.data.slice(0, 4);
+        const updatedPosts = posts.map(post => {
           return {
             ...post,
             author: 'Max'
@@ -22,14 +22,19 @@ const Posts = props => {
         setPosts(updatedPosts);
       })
       .catch(error => {
-        console.log(error);
+        console.log('catch', error);
         //   this.setState({ error: true });
-      });
+      });        
   }, []);
 
   const postSelectedHandler = id => setSelectedPostId(id);
-  let postSection = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
-  if (!error) {
+
+  let postSection = (
+    <p style={{ textAlign: 'center' }}>Something went wrong!</p>
+  );
+
+
+  if (true) {
     postSection = posts.map(post => {
       return (
         <Post
