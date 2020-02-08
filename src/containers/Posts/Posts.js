@@ -6,14 +6,14 @@ import './Posts.css';
 const Posts = props => {
   const [posts, setPosts] = useState([]);
   const [selectedPostId, setSelectedPostId] = useState(null);
-  const [error, setError] = useState(false);
+  const [setError, error] = useState(false);
 
   useEffect(() => {
     axios
       .get('/posts')
       .then(response => {
-        const responsePosts = response.data.slice(0, 4);
-        const updatedPosts = responsePosts.map(post => {
+        const respPosts = response.data.slice(0, 4);
+        const updatedPosts = respPosts.map(post => {
           return {
             ...post,
             author: 'Max'
@@ -25,13 +25,12 @@ const Posts = props => {
         console.log(error);
         //   this.setState({ error: true });
       });
-  });
+  }, []);
 
   const postSelectedHandler = id => setSelectedPostId(id);
-
-//   let posts = <p style={{ textAlign: 'center' }}>Something went wront!</p>;
+  let postSection = <p style={{textAlign: 'center'}}>Something went wrong!</p>;
   if (!error) {
-    posts.map(post => {
+    postSection = posts.map(post => {
       return (
         <Post
           key={post.id}
@@ -43,7 +42,7 @@ const Posts = props => {
     });
   }
 
-  return <section className="Posts">{posts}</section>;
+  return <section className="Posts">{postSection}</section>;
 };
 
 export default Posts;
