@@ -7,8 +7,7 @@ class NewPost extends Component {
   state = {
     title: '',
     content: '',
-    author: 'Max',
-    submitted: false
+    author: 'Max'
   };
 
   componentDidMount() {
@@ -21,23 +20,19 @@ class NewPost extends Component {
       body: this.state.content,
       author: this.state.author
     };
+
     axios
       .post('https://jsonplaceholder.typicode.com/posts', post)
       .then(response => {
         console.log(response);
-        this.setState({ submitted: true });
+        this.props.history.push('/posts');
       });
   };
 
   render() {
-    let redirect = null;
-    if (this.state.submitted) {
-      redirect = <Redirect to="/posts" />;
-    }
-    
+
     return (
       <div className="NewPost">
-        {redirect}
         <h1>Add a Post</h1>
         <label>Title</label>
         <input

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Post from '../../components/Post/Post';
-import axios from '../../axios';
+import Post from '../../../components/Post/Post';
+import axios from '../../../axios';
 import { Route } from 'react-router-dom';
 import FullPost from '../FullPost/FullPost';
 import './Posts.css';
